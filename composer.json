@@ -1,0 +1,25 @@
+{
+    "name": "suth/laravel-sift",
+    "description": "A Laravel 5 package for Sift Science",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sutherland Boswell",
+            "email": "sutherland.boswell@gmail.com"
+        }
+    ],
+    "require": {
+        "siftscience/sift-php" : "1.*",
+        "illuminate/support": "5.1.*|5.2.*|5.3.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Suth\\LaravelSift\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Suth\\Tests\\LaravelSift\\": "tests/"
+        }
+    }
+}
