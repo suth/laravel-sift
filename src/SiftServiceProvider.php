@@ -50,11 +50,11 @@ class SiftServiceProvider extends ServiceProvider
     /**
      * Perform post-registration booting of services.
      *
-     * @param  \Illuminate\Routing\Router  $router
      * @param  \Illuminate\Contracts\Events\Dispatcher  $events
+     * @param  \Illuminate\Routing\Router  $router
      * @return void
      */
-    public function boot(Router $router, DispatcherContract $events)
+    public function boot(DispatcherContract $events, Router $router)
     {
         parent::boot($events);
 
