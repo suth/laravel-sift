@@ -2,8 +2,8 @@
 
 namespace Suth\LaravelSift\Listeners;
 
-use SiftScience;
 use Illuminate\Http\Request;
+use Suth\LaravelSift\SiftScience;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 abstract class RecordLoginAction implements ShouldQueue
@@ -16,9 +16,9 @@ abstract class RecordLoginAction implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(Request $request, SiftScience $client)
+    public function __construct(Request $request, SiftScience $sift)
     {
         $this->request = $request;
-        $this->client = $client;
+        $this->client = $sift->client;
     }
 }
