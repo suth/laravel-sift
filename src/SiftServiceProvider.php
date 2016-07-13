@@ -7,6 +7,23 @@ use Illuminate\Support\ServiceProvider;
 
 class SiftServiceProvider extends ServiceProvider
 {
+    /**
+     * The event listener mappings for Sift Science.
+     *
+     * @var array
+     */
+    protected $listen = [
+        'Illuminate\Auth\Events\Login' => [
+            'Suth\LaravelSift\Listeners\RecordLoginSuccess',
+        ],
+        'Illuminate\Auth\Events\Logout' => [
+            'Suth\LaravelSift\Listeners\RecordLogout',
+        ],
+        'Illuminate\Auth\Events\Failed' => [
+            'Suth\LaravelSift\Listeners\RecordLoginFailure',
+        ],
+    ];
+
 	/**
 	 * Register the service provider.
 	 *
