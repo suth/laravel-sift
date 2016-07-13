@@ -2,22 +2,22 @@
 
 namespace Suth\LaravelSift\Listeners;
 
-use Illuminate\Auth\Events\Login;
+use Illuminate\Auth\Events\Failed;
 
-class RecordLoginSuccess extends RecordAuthAction
+class RecordLoginFailure extends RecordAuthAction
 {
     /**
      * Handle the event.
      *
-     * @param  Illuminate\Auth\Events\Login $event
+     * @param  Illuminate\Auth\Events\Failed $event
      * @return void
      */
-    public function handle(Login $event)
+    public function handle(Failed $event)
     {
         $this->sift->client->track('$login', [
             '$user_id' => $event->user->email,
             '$session_id' => $this->request->session()->get('sift_session_id'),
-            '$login_status' => '$success'
+            '$login_status' => '$failure'
         ]);
     }
 }

@@ -38,7 +38,7 @@ class SiftServiceProvider extends ServiceProvider
             __DIR__.'/config/sift.php' => config_path('sift.php'),
         ]);
 
-        $this->app->singleton('siftscience', function ($app) {
+        $this->app->singleton(SiftScience::class, function ($app) {
             return new SiftScience(
                 new SiftClient($app['config']['sift']['api_key'])
             );
