@@ -24,4 +24,14 @@ class SiftServiceProvider extends ServiceProvider
             return new SiftClient(config('sift.api_key'));
         });
 	}
+
+    /**
+     * Perform post-registration booting of services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->loadViewsFrom(__DIR__.'/Views', 'sift');
+    }
 }
