@@ -1,6 +1,6 @@
 <script type="text/javascript">
   var _user_id = '{{ (Auth::user()) ? Auth::user()->email : '' }}';
-  var _session_id = '{{ session()->getId() }}';
+  var _session_id = '{{ session()->get('sift_session_id') }}';
 
   var _sift = window._sift = window._sift || [];
   _sift.push(['_setAccount', '{{ config('sift.javascript_key') }}']);
