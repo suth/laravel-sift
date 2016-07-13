@@ -40,7 +40,7 @@ class SiftServiceProvider extends ServiceProvider
 
         $this->app->singleton('siftscience', function ($app) {
             return new SiftScience(
-                SiftClient($app['config']['sift']['api_key'])
+                new SiftClient($app['config']['sift']['api_key'])
             );
         });
 	}
