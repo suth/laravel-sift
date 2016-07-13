@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 use Suth\LaravelSift\SiftScience;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-abstract class RecordLoginAction implements ShouldQueue
+abstract class RecordAuthAction implements ShouldQueue
 {
     protected $request;
-    protected $client;
+    protected $sift;
 
     /**
      * Create the event listener.
@@ -19,6 +19,6 @@ abstract class RecordLoginAction implements ShouldQueue
     public function __construct(Request $request, SiftScience $sift)
     {
         $this->request = $request;
-        $this->client = $sift->client;
+        $this->sift = $sift;
     }
 }

@@ -4,7 +4,7 @@ namespace Suth\LaravelSift\Listeners;
 
 use Illuminate\Auth\Events\Login;
 
-class RecordLoginSuccess extends RecordLoginAction
+class RecordLoginSuccess extends RecordAuthAction
 {
     /**
      * Handle the event.
@@ -14,7 +14,7 @@ class RecordLoginSuccess extends RecordLoginAction
      */
     public function handle(Login $event)
     {
-        $this->client->track('$login', [
+        $this->sift->client->track('$login', [
             '$user_id' => $event->user->getKey(),
             '$session_id' => $this->request->session()->get('sift_session_id'),
             '$login_status' => '$success'
