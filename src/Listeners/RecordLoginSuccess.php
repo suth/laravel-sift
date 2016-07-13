@@ -20,3 +20,4 @@ class RecordLoginSuccess extends RecordLoginAction
             '$login_status' => '$success'
         ]);
     }
+}
