@@ -13,6 +13,6 @@ class SiftScience extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return Suth\LaravelSift\SiftScience::class;
+        return \Suth\LaravelSift\SiftScience::class;
     }
 }
