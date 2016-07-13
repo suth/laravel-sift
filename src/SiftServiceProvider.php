@@ -4,9 +4,9 @@ namespace Suth\LaravelSift;
 
 use SiftClient;
 use Illuminate\Routing\Router;
+use Illuminate\Support\ServiceProvider;
 use Suth\LaravelSift\Middleware\ManageSiftSession;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
-use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class SiftServiceProvider extends ServiceProvider
 {
@@ -50,15 +50,19 @@ class SiftServiceProvider extends ServiceProvider
     /**
      * Perform post-registration booting of services.
      *
-     * @param  \Illuminate\Contracts\Events\Dispatcher  $events
+     * @param  Illuminate\Contracts\Events\Dispatcher  $events
      * @param  \Illuminate\Routing\Router  $router
      * @return void
      */
     public function boot(DispatcherContract $events, Router $router)
     {
-        parent::boot($events);
-
         $router->pushMiddlewareToGroup('web', ManageSiftSession::class);
+
+        foreach ($this->listen as $event) {
+            foreach ($event as $listener) {
+                $events->listen($event, $listener);
+            }
+        }
 
         $this->loadViewsFrom(__DIR__.'/Views', 'sift');
     }
