@@ -6,10 +6,20 @@ use SiftClient;
 
 class SiftScience
 {
-    public $client;
+    protected $client;
 
     public function __construct(SiftClient $client)
     {
         $this->client = $client;
+    }
+
+    /**
+     * Get the sift-php client
+     *
+     * @return SiftClient
+     */
+    public function client()
+    {
+        return $this->client;
     }
 }

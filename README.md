@@ -1,5 +1,6 @@
 # Laravel Sift
-A Laravel 5 package for Sift Science
+
+A [Laravel 5](https://laravel.com/) package for [Sift Science](https://siftscience.com/)
 
 ## Installation
 
@@ -29,6 +30,7 @@ The default config file will check for a `SIFT_API_KEY` and `SIFT_JAVASCRIPT_KEY
 
 ## Usage
 
+### JavaScript Snippet
 To add the JavaScript snippet to your pages, include the following line immediately after the opening body tag in your master blade template:
 
 ```php
@@ -37,6 +39,10 @@ To add the JavaScript snippet to your pages, include the following line immediat
 
 This will track user interaction with your site using a session ID as well as the user's email when authenticated. For more information on the JavaScript snippet itself, consult the [Sift Science documentation](https://siftscience.com/developers/docs/javascript/javascript-api).
 
-## Tracking Events
-
+### Tracking Events
 By default the package tracks successful and failed logins as well as logouts.
+
+You'll probably want to track more events, which can easily be done as shown below:
+```php
+
+```
