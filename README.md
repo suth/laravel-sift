@@ -1,6 +1,6 @@
 # Laravel Sift
 
-A [Laravel 5](https://laravel.com/) package for [Sift Science](https://siftscience.com/)
+A [Laravel 5](https://laravel.com/) package for [Sift Science](https://siftscience.com/).
 
 ## Installation
 
@@ -40,9 +40,20 @@ To add the JavaScript snippet to your pages, include the following line immediat
 This will track user interaction with your site using a session ID as well as the user's email when authenticated. For more information on the JavaScript snippet itself, consult the [Sift Science documentation](https://siftscience.com/developers/docs/javascript/javascript-api).
 
 ### Tracking Events
-By default the package tracks successful and failed logins as well as logouts.
+By default the package tracks successful and failed logins as well as logouts, but you'll probably want to track other actions like transactions.
 
-You'll probably want to track more events, which can easily be done as shown below:
+To track events, you'll want to interact with the SiftClient class, which can be accessed as shown below:
 ```php
+// Import the facade
+use SiftScience;
 
+// Returns the SiftClient class
+SiftScience::client();
+
+// Track an event
+SiftScience::client()->track('$transaction', $properties);
 ```
+
+For more on how to use the SiftClient class, consult the [sift-php documentation](https://github.com/SiftScience/sift-php) and the [events API reference](https://siftscience.com/developers/docs/php/events-api/overview).
+
+You may want to use a queue to track certain events to avoid slowing down your application. The built-in support for auth event tracking uses the queue, but as of now you will have to implement queueing yourself. Suggestions are welcome for an elegant way of adding queue support directly to this package.
