@@ -3,7 +3,8 @@
 namespace Suth\LaravelSift;
 
 use SiftClient;
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
+use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class SiftServiceProvider extends ServiceProvider
 {
@@ -45,10 +46,13 @@ class SiftServiceProvider extends ServiceProvider
     /**
      * Perform post-registration booting of services.
      *
+     * @param  \Illuminate\Contracts\Events\Dispatcher  $events
      * @return void
      */
-    public function boot()
+    public function boot(DispatcherContract $events)
     {
+        parent::boot($events);
+
         $this->loadViewsFrom(__DIR__.'/Views', 'sift');
     }
 }
