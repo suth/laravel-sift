@@ -4,9 +4,9 @@ namespace Suth\LaravelSift;
 
 use SiftClient;
 use Illuminate\Routing\Router;
-use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Support\ServiceProvider;
 use Suth\LaravelSift\Middleware\ManageSiftSession;
+use Suth\LaravelSift\ViewComposers\SnippetComposer;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 
 class SiftServiceProvider extends ServiceProvider
@@ -53,10 +53,9 @@ class SiftServiceProvider extends ServiceProvider
      *
      * @param  \Illuminate\Contracts\Events\Dispatcher  $events
      * @param  \Illuminate\Routing\Router  $router
-     * @param  \Illuminate\Contracts\Auth\Guard  $guard
      * @return void
      */
-    public function boot(DispatcherContract $events, Router $router, Guard $guard)
+    public function boot(DispatcherContract $events, Router $router)
     {
         $router->pushMiddlewareToGroup('web', ManageSiftSession::class);
 
@@ -68,12 +67,6 @@ class SiftServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom(__DIR__.'/Views', 'sift');
 
-        view()->composer('sift::snippet', function ($view) use ($guard) {
-            $view->with([
-                'sift_session_id' => session()->get('sift_session_id'),
-                'sift_user_id' => ($guard->user()) ? $guard->user()->email : '',
-                'sift_javascript_key' => config('sift.javascript_key'),
-            ]);
-        });
+        view()->composer('sift::snippet', SnippetComposer::class);
     }
 }
