@@ -30,8 +30,12 @@ class SiftScience
      * @param \Illuminate\Contracts\Auth\Authenticatable $user
      * @return mixed
      */
-    public static function getUserId(Authenticatable $user)
+    public static function getUserId(Authenticatable $user = null)
     {
+        if (is_null($user)) {
+            $user = auth()->user();
+        }
+
         if (method_exists($user, 'getSiftId')) {
             return $user->getSiftId();
         }
