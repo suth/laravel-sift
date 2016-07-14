@@ -3,6 +3,7 @@
 namespace Suth\LaravelSift;
 
 use SiftClient;
+use Illuminate\Session\Store as SessionStore;
 use Illuminate\Contracts\Auth\Authenticatable;
 
 class SiftScience
@@ -41,5 +42,20 @@ class SiftScience
         }
 
         return $user->getAuthIdentifier();
+    }
+
+    /**
+     * Get the Sift session ID
+     *
+     * @param \Illuminate\Session\Store $store
+     * @return string
+     */
+    public static function getSessionId(SessionStore $store = null)
+    {
+        if (is_null($store)) {
+            $store = session();
+        }
+
+        return $store->get('sift_session_id');
     }
 }
