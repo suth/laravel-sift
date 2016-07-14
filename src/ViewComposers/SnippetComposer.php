@@ -35,7 +35,7 @@ class SnippetComposer
     public function compose(View $view)
     {
         $view->with([
-            'sift_session_id' => session()->get('sift_session_id'),
+            'sift_session_id' => SiftScience::getSessionId(),
             'sift_user_id' => $this->getSiftUserId(),
             'sift_javascript_key' => config('sift.javascript_key'),
         ]);
