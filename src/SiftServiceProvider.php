@@ -60,8 +60,8 @@ class SiftServiceProvider extends ServiceProvider
     {
         $router->pushMiddlewareToGroup('web', ManageSiftSession::class);
 
-        foreach ($this->listen as $event) {
-            foreach ($event as $listener) {
+        foreach ($this->listen as $event => $listeners) {
+            foreach ($listeners as $listener) {
                 $events->listen($event, $listener);
             }
         }
