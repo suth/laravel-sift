@@ -41,7 +41,7 @@ class SnippetComposer
         ]);
     }
 
-    public function getSiftUserId()
+    protected function getSiftUserId()
     {
         return ($this->guard->user()) ? SiftScience::getUserId($this->guard->user()) : '';
     }
