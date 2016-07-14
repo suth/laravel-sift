@@ -1,9 +1,9 @@
 <script type="text/javascript">
-  var _user_id = '{{ (Auth::user()) ? Auth::user()->email : '' }}';
-  var _session_id = '{{ session()->get('sift_session_id') }}';
+  var _user_id = '{{ $sift_user_id }}';
+  var _session_id = '{{ $sift_session_id }}';
 
   var _sift = window._sift = window._sift || [];
-  _sift.push(['_setAccount', '{{ config('sift.javascript_key') }}']);
+  _sift.push(['_setAccount', '{{ $sift_javascript_key }}']);
   _sift.push(['_setUserId', _user_id]);
   _sift.push(['_setSessionId', _session_id]);
   _sift.push(['_trackPageview']);

@@ -65,5 +65,13 @@ class SiftServiceProvider extends ServiceProvider
         }
 
         $this->loadViewsFrom(__DIR__.'/Views', 'sift');
+
+        view()->composer('sift::snippet', function ($view) {
+            $view->with([
+                'sift_session_id' => session()->get('sift_session_id'),
+                'sift_user_id' => (Auth::user()) ? Auth::user()->email : '',
+                'sift_javascript_key' => config('sift.javascript_key'),
+            ]);
+        });
     }
 }
