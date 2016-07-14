@@ -3,6 +3,7 @@
 namespace Suth\LaravelSift\ViewComposers;
 
 use Illuminate\View\View;
+use Suth\LaravelSift\SiftScience;
 use Illuminate\Contracts\Auth\Guard;
 
 class SnippetComposer
