@@ -14,7 +14,7 @@ class RecordLogout extends RecordAuthAction
      */
     public function handle(Logout $event)
     {
-        $this->sift->client()->track('$logout', [
+        $this->track('$logout', [
             '$user_id' => $this->sift->getUserId($event->user),
         ]);
     }

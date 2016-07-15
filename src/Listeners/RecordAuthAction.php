@@ -2,23 +2,41 @@
 
 namespace Suth\LaravelSift\Listeners;
 
-use Illuminate\Http\Request;
+use Illuminate\Session\Store;
 use Suth\LaravelSift\SiftScience;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use Suth\LaravelSift\Jobs\TrackUsingQueue;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 
-abstract class RecordAuthAction implements ShouldQueue
+abstract class RecordAuthAction
 {
-    protected $request;
+    use DispatchesJobs;
+
+    protected $session;
     protected $sift;
 
     /**
      * Create the event listener.
      *
+     * @param \Illuminate\Session\Store $session
+     * @param \Suth\LaravelSift\SiftScience $sift
      * @return void
      */
-    public function __construct(Request $request, SiftScience $sift)
+    public function __construct(Store $session, SiftScience $sift)
     {
-        $this->request = $request;
+        $this->session = $session;
         $this->sift = $sift;
+    }
+
+    /**
+     * Dispatch a queued job to track the event
+     *
+     * @param string $type
+     * @param array  $properties
+     */
+    protected function track($type, $properties)
+    {
+        $this->dispatch(
+            new TrackUsingQueue($type, $properties)
+        );
     }
 }

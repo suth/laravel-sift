@@ -16,9 +16,9 @@ class RecordLoginSuccess extends RecordAuthAction
     {
         $sift = $this->sift;
 
-        $this->sift->client()->track('$login', [
+        $this->track('$login', [
             '$user_id' => $sift->getUserId($event->user),
-            '$session_id' => $sift::getSessionId($this->request->session()),
+            '$session_id' => $sift::getSessionId($this->session),
             '$login_status' => '$success'
         ]);
     }
