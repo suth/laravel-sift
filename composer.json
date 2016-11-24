@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "siftscience/sift-php" : "1.*",
+        "siftscience/sift-php" : "2.*",
         "illuminate/contracts": "5.1.*|5.2.*|5.3.*",
         "illuminate/support": "5.1.*|5.2.*|5.3.*"
     },
