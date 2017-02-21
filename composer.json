@@ -10,8 +10,8 @@
     ],
     "require": {
         "siftscience/sift-php" : "2.*",
-        "illuminate/contracts": "5.1.*|5.2.*|5.3.*",
-        "illuminate/support": "5.1.*|5.2.*|5.3.*"
+        "illuminate/contracts": "5.1.*|5.2.*|5.3.*|5.4.*",
+        "illuminate/support": "5.1.*|5.2.*|5.3.*|5.4.*"
     },
     "autoload": {
         "psr-4": {
